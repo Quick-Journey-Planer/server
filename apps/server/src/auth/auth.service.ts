@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import {
   Observable,
   catchError,
@@ -14,7 +14,7 @@ import { compare } from 'bcrypt';
 import { users } from '@prisma/client';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { AuthResponse, Response } from 'src/interfaces';
+import { AuthResponse, Response } from '../interfaces';
 
 interface AuthenticatedUser {
   id: string;

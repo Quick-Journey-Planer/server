@@ -5,8 +5,8 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { extractTokenFromHeader } from 'src/helpers';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { extractTokenFromHeader } from '../../helpers';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class AdminAuthGuard extends AuthGuard('jwt') {

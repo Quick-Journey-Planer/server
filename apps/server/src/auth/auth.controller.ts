@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { LocalAuthGuard } from './guards';
-import { AuthResponse, Response } from 'src/interfaces';
+import { AuthResponse, Response } from '../interfaces';
 import { Observable } from 'rxjs';
 
 @ApiTags('Auth')

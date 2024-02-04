@@ -1,4 +1,4 @@
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import {
   BadRequestException,
   Injectable,
@@ -15,7 +15,7 @@ import {
 } from 'rxjs';
 import { hash } from 'bcrypt';
 import { CreateUserDto, ResetPasswordDto, UpdateAccountDto } from './dto';
-import { Response } from 'src/interfaces';
+import { Response } from '../interfaces';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
