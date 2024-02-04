@@ -1,8 +1,20 @@
-import { IsNotEmpty, IsString, IsStrongPassword } from 'class-validator';
-import { UserDto } from './user.dto';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  IsStrongPassword,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateUserDto extends UserDto {
+export class CreateUserDto {
+  @ApiProperty({
+    description: 'Email',
+    example: 'contact@quick-journey.com',
+  })
+  @IsNotEmpty()
+  @IsEmail()
+  public email: string;
+
   @ApiProperty({ description: 'Password', example: 'ABC123abc!' })
   @IsNotEmpty()
   @IsStrongPassword({

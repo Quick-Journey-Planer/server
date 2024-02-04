@@ -1,33 +1,13 @@
-import {
-  IsNotEmpty,
-  IsStrongPassword,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
+import { CreateUserDto } from './create-user.dto';
+import { ApiProperty, OmitType } from '@nestjs/swagger';
 
-export class ResetPasswordDto {
+export class ResetPasswordDto extends OmitType(CreateUserDto, [
+  'email',
+  'firstName',
+  'lastName',
+]) {
+  @ApiProperty({ description: 'Confirmation number', example: '123456' })
   @IsNotEmpty()
-  @IsStrongPassword({
-    minLength: 6,
-    minLowercase: 1,
-    minUppercase: 1,
-    minNumbers: 1,
-    minSymbols: 1,
-  })
-  public password: string;
-
-  @IsNotEmpty()
-  @IsStrongPassword({
-    minLength: 6,
-    minLowercase: 1,
-    minUppercase: 1,
-    minNumbers: 1,
-    minSymbols: 1,
-  })
-  public passwordConfirmation: string;
-
-  @IsNotEmpty()
-  @MinLength(6)
-  @MaxLength(6)
   public confirmationNumber: number;
 }

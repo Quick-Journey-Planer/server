@@ -10,16 +10,12 @@ import {
   Param,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { ApiBearerAuth, ApiBody, ApiParam } from '@nestjs/swagger';
-import {
-  CreateUserDto,
-  ResetPasswordDto,
-  UpdateAccountDto,
-  UserDto,
-} from './dto';
+import { ApiBearerAuth, ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
+import { CreateUserDto, ResetPasswordDto, UpdateAccountDto } from './dto';
 import { Response } from 'src/interfaces';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+@ApiTags('User')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -74,29 +70,21 @@ export class UserController {
       : this.userService.updateAccount(headers.authorization, updateUserDto);
   }
 
-  @ApiBody({
-    type: UserDto,
-    description: 'User forgot password',
-    examples: {
-      example1: {
-        summary: 'User 1',
-        value: {
-          email: 'contact@quick-journey.com',
-        },
-      },
-    },
+  @ApiParam({
+    type: String,
+    name: 'Email',
   })
-  @Post('forgot-password')
-  public forgotPassword(@Body() userDto: UserDto): Observable<Response> {
-    return this.userService.forgotPassword(userDto);
+  @Put('forgot-password/:email')
+  public forgotPassword(@Param() email: string): Observable<Response> {
+    return this.userService.forgotPassword(email);
   }
 
   @ApiBody({
-    type: UserDto,
+    type: ResetPasswordDto,
     description: 'User reset password',
     examples: {
       example1: {
-        summary: 'User 1',
+        summary: 'User',
         value: {
           password: 'SuperSecretPassword2!',
           passwordConfirmation: 'SuperSecretPassword2',

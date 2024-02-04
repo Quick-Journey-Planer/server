@@ -1,11 +1,12 @@
-import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { Controller, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
-import { ApiBearerAuth, ApiBody } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { LocalAuthGuard } from './guards';
 import { AuthResponse, Response } from 'src/interfaces';
 import { Observable } from 'rxjs';
 
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -13,7 +14,7 @@ export class AuthController {
   @ApiBody({
     type: LoginDto,
     examples: {
-      Login_example_1: {
+      example: {
         value: {
           username: 'contact@quick-journey.com',
           password: 'SuperSecretPassword1!',
@@ -28,7 +29,7 @@ export class AuthController {
   }
 
   @ApiBearerAuth()
-  @Get('logout')
+  @Put('logout')
   public logOut(@Req() { headers }): Observable<Response> {
     return this.authService.logOut(headers.authorization);
   }

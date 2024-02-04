@@ -14,12 +14,7 @@ import {
   throwError,
 } from 'rxjs';
 import { hash } from 'bcrypt';
-import {
-  CreateUserDto,
-  ResetPasswordDto,
-  UpdateAccountDto,
-  UserDto,
-} from './dto';
+import { CreateUserDto, ResetPasswordDto, UpdateAccountDto } from './dto';
 import { Response } from 'src/interfaces';
 import { JwtService } from '@nestjs/jwt';
 
@@ -130,10 +125,10 @@ export class UserService {
     );
   }
 
-  public forgotPassword(userDto: UserDto): Observable<Response> {
+  public forgotPassword(email: string): Observable<Response> {
     return from(
       this.prisma.users.findUnique({
-        where: { email: userDto.email },
+        where: { email },
       }),
     ).pipe(
       mergeMap((user) =>
