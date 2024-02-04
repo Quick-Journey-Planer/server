@@ -33,6 +33,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "express-basic-auth": "^1.2.1",
+    "joi": "^17.12.1",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
@@ -82,9 +83,6 @@
     "roots": [
       "<rootDir>/src/",
       "<rootDir>/libs/"
-    ],
-    "moduleNameMapper": {
-      "^y/common(|/.*)$": "<rootDir>/libs/common/src/$1"
-    }
+    ]
   }
 }
