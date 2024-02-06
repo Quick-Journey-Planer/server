@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
-import { PrismaService } from '../../../../libs/common/src/prisma/prisma.service';
+import { PrismaService } from '@app/common';
 import {
   Observable,
   catchError,
