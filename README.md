@@ -1,2 +1,2 @@
-# server
-NestJS Server
+# Quicj Journey Planer
+NestJS Microservices
