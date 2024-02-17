@@ -3,13 +3,9 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as basicAuth from 'express-basic-auth';
-import { Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  // connect microservice
-  app.connectMicroservice({ transoprt: Transport.TCP });
 
   // TODO: disable cors
   app.enableCors();
@@ -36,7 +32,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-doc', app, document);
 
-  await app.startAllMicroservices();
-  await app.listen(3001);
+  await app.listen(3000);
 }
 bootstrap();
